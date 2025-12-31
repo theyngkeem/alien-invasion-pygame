@@ -4,12 +4,17 @@ from pygame.sprite import Sprite
 
 class Bullet(Sprite):
     """manage the bullet"""
-    def __init__(self, ai_game):
+    def __init__(self, ai_game, plasma=False):
         """match the ship pos"""
         super().__init__()
         self.screen = ai_game.screen
         self.setting = ai_game.setting
         self.color = self.setting.bullet_color
+        self.plasma = plasma
+
+        # plasma bullets are yellow/bright
+        if self.plasma:
+            self.color = (255, 255, 0)
 
         # set bullet to ship rect
         self.rect = pygame.Rect(0, 0, self.setting.bullet_w,
